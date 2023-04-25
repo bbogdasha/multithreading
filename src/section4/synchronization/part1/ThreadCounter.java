@@ -1,4 +1,4 @@
-package section4.synchronization;
+package section4.synchronization.part1;
 
 public class ThreadCounter {
 
