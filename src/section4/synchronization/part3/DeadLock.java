@@ -33,7 +33,7 @@ public class DeadLock {
     }
 
 //    DeadLock situation
-    
+
 //    private static class DeadThreadTwo extends Thread {
 //
 //
