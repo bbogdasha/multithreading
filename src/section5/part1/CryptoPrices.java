@@ -1,7 +1,6 @@
 package section5.part1;
 
-
-
+import javafx.animation.AnimationTimer;
 import javafx.animation.FillTransition;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -27,7 +26,7 @@ public class CryptoPrices extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         StackPane root = new StackPane();
         double width = 300;
         double height = 250;
@@ -45,6 +44,34 @@ public class CryptoPrices extends Application {
         root.getChildren().add(grid);
 
         stage.setScene(new Scene(root, width, height));
+
+        PricesContainer pricesContainer = new PricesContainer();
+        PriceUpdater priceUpdater = new PriceUpdater(pricesContainer);
+
+        AnimationTimer animationTimer = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                if (pricesContainer.getLockObject().tryLock()) {
+                    try {
+                        Label bitcoinLabel = cryptoLabels.get("BTC");
+                        bitcoinLabel.setText(String.valueOf(pricesContainer.getBitcoinPrice()));
+
+                        Label etherLabel = cryptoLabels.get("ETH");
+                        etherLabel.setText(String.valueOf(pricesContainer.getEtherPrice()));
+
+                        Label rippleLabel = cryptoLabels.get("XRP");
+                        rippleLabel.setText(String.valueOf(pricesContainer.getRipplePrice()));
+                    } finally {
+                        pricesContainer.getLockObject().unlock();
+                    }
+                }
+            }
+        };
+
+        animationTimer.start();
+
+        priceUpdater.start();
+
         stage.show();
     }
 
@@ -171,7 +198,7 @@ public class CryptoPrices extends Application {
                 }
 
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(12000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -182,6 +209,7 @@ public class CryptoPrices extends Application {
     private static Double getPrice(String url) {
         String jsonContent = GetURL.getUrlContent(url);
         String price = jsonContent.substring(jsonContent.lastIndexOf(":") + 1, jsonContent.length() - 3);
+        System.out.println(price);
         return Double.parseDouble(price);
     }
 }
