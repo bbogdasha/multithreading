@@ -1,4 +1,4 @@
-package section5.part1;
+package section5.additional_locking.part1;
 
 import javafx.animation.AnimationTimer;
 import javafx.animation.FillTransition;
