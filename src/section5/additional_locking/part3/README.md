@@ -6,7 +6,7 @@ To control access to the resource the semaphore uses a counter representing the 
 
 * When you have finished working with the resource, you must release it using the `release()` method
 
-![Alt Text](https://github.com/bbogdasha/multithreading/tree/master/resources/screenshots/semaphore.gif)
+![Alt Text](https://github.com/bbogdasha/multithreading/blob/master/resources/screenshots/semaphore.gif)
 
 ---
 
