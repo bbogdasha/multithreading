@@ -10,4 +10,6 @@ The course consists of the following items:
 
 **4. Section:** Data sharing between Threads;
 
-**5. Section:** 
+**5. Section:** Additional locking
+
+**6. Section:**
