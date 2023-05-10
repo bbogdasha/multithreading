@@ -12,4 +12,4 @@ The course consists of the following items:
 
 **5. Section:** Additional locking
 
-**6. Section:**
+**6. Section:** Block condition
