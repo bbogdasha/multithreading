@@ -13,3 +13,5 @@ The course consists of the following items:
 **5. Section:** Additional locking
 
 **6. Section:** Block condition
+
+**7. Section:** Atomic operations
